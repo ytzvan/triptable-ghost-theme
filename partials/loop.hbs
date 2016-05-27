@@ -1,0 +1,37 @@
+{{!-- Previous/next page links - only displayed on page 2+ --}}
+<div class="extra-pagination inner">
+    {{pagination}}
+</div>
+
+{{!-- This is the post loop - each post will be output using this markup --}}
+<div class="container">
+<div class="row">
+{{#foreach posts}}
+<div class="col-md-6">
+<article class="{{post_class}}">
+    <header class="post-header">
+        <div class="img-cover" style="background-image: url({{image}})"><div class="tags">{{tags}}</div></div>
+        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
+    </header>
+    <footer class="post-meta">
+        <i class="fa fa-user"></i>
+        {{author}}
+        <time id="time{{this.id}}" class="post-date" datetime="{{date format="YYYY-MM-DD"}}"><i class="fa fa-clock-o"></i> </time>
+    </footer>
+    <section class="post-excerpt">
+        <p>{{excerpt words="83"}}... </p><div><a class="read-more btn btn-primary" href="{{url}}">Leer Artículo</a></div>
+    </section>
+</article>
+</div>
+<script>
+ $(function() {
+      var date = new Date("{{date format="YYYY-MM-DD"}}");
+       var pretty = moment(date).fromNow();
+      $('#time{{this.id}}').append(pretty);
+       });
+</script>
+{{/foreach}}
+</div>
+</div>
+{{!-- Previous/next page links - displayed on every page --}}
+{{pagination}}
